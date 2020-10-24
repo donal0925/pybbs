@@ -3,6 +3,7 @@ package co.yiiu.pybbs.util;
 import co.yiiu.pybbs.service.ISystemConfigService;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
 import org.jsoup.safety.Whitelist;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
@@ -80,7 +81,7 @@ public class BaseModel {
                 .addAttributes("video", "class", "controls")
                 .addAttributes("source", "src", "type")
         );
-        Document parse = Jsoup.parse(content);
+        Document parse = Jsoup.parse(content, "", Parser.xmlParser());
         Elements tableElements = parse.select("table");
         tableElements.forEach(element -> element.addClass("table table-bordered"));
         Elements aElements = parse.select("p");
